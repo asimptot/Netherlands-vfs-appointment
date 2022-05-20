@@ -6,8 +6,6 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import warnings
 
-print("Please insert your Gmail credentials")
-
 while True:
     fromaddr = 'your_gmail'
     password = 'your_password'
