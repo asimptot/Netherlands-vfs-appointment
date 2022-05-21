@@ -5,6 +5,8 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import warnings
+from selenium.webdriver.common.keys import Keys
+import pyautogui as pg
 
 while True:
     fromaddr = 'your_gmail'
@@ -54,6 +56,12 @@ def checkAvailability():
             "plhMain_cboVAC")).select_by_index(2)
         driver.find_element_by_id("plhMain_btnSubmit").click()
         time.sleep(10)
+        
+        person = driver.find_element_by_id("plhMain_tbxNumOfApplicants")
+        person.send_keys(Keys.BACKSPACE)
+        person.send_keys("2")
+        time.sleep(2)
+        
         Select(driver.find_element_by_id(
             "plhMain_cboVisaCategory")).select_by_index(6)
         driver.find_element_by_id("plhMain_btnSubmit").click()
@@ -68,14 +76,30 @@ def checkAvailability():
         Select(driver.find_element_by_id(
             "plhMain_repAppVisaDetails_cboTitle_0")).select_by_index(1)
         time.sleep(2)
-        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxFName").send_keys('asd')
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxFName").send_keys('person1_F')
         time.sleep(2)
-        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxLName").send_keys('def')
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxLName").send_keys('person1_L')
         time.sleep(2)
         driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxContactNumber").send_keys('123123123')
         time.sleep(2)
         driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxEmailAddress").send_keys('asd@def.com')
         time.sleep(2)
+        
+        Select(driver.find_element_by_id(
+            "plhMain_repAppVisaDetails_cboTitle_1")).select_by_index(2)
+        time.sleep(2)
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl02$tbxFName").send_keys('person2_F')
+        time.sleep(2)
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl02$tbxLName").send_keys('person2_L')
+        time.sleep(2)
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl02$tbxContactNumber").send_keys(
+            '11111111')
+        time.sleep(2)
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl02$tbxEmailAddress").send_keys(
+            'abc@def.com')
+        time.sleep(2)
+        
+        
         Select(driver.find_element_by_id(
             "plhMain_cboConfirmation")).select_by_index(1)
         time.sleep(2)
@@ -93,7 +117,14 @@ def checkAvailability():
             print(
                 "\nAvailable in May\n")
             sendEmail()
-            driver.close()
+            driver.find_element_by_class_name("OpenDateAllocated").click()
+            time.sleep(2)
+            driver.find_element_by_id("plhMain_gvSlot_lnkTimeSlot_0").click()
+            time.sleep(2)
+            driver.switch_to.alert.accept()
+            time.sleep(10)
+            pg.screenshot('resim.png')
+            time.sleep(10)
         else:
             print("Unexpected Error")
         while(True):
@@ -111,7 +142,14 @@ def checkAvailability():
                 print(
                     "\nUnexpected Error\n")
                 sendEmail()
-                driver.close()
+                driver.find_element_by_class_name("OpenDateAllocated").click()
+                time.sleep(2)
+                driver.find_element_by_id("plhMain_gvSlot_lnkTimeSlot_0").click()
+                time.sleep(2)
+                driver.switch_to.alert.accept()
+                time.sleep(10)
+                pg.screenshot('resim.png')
+                time.sleep(10)
             else:
                 print("Unexpected Error")
             driver.find_element_by_xpath(
@@ -127,7 +165,14 @@ def checkAvailability():
                 print(
                     "\nAvailable in May\n")
                 sendEmail()
-                driver.close()
+                driver.find_element_by_class_name("OpenDateAllocated").click()
+                time.sleep(2)
+                driver.find_element_by_id("plhMain_gvSlot_lnkTimeSlot_0").click()
+                time.sleep(2)
+                driver.switch_to.alert.accept()
+                time.sleep(10)
+                pg.screenshot('resim.png')
+                time.sleep(10)
             else:
                 print("Unexpected Error")
 
