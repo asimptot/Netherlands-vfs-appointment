@@ -97,7 +97,8 @@ def checkAvailability():
             "plhMain_cboConfirmation")).select_by_index(1)
         time.sleep(2)
         driver.find_element_by_id("plhMain_btnSubmit").click()
-
+        time.sleep(30)
+        
         while(True):
             driver.find_element_by_xpath(
                 "//*[@id='plhMain_cldAppointment']/tbody/tr[1]/td/table/tbody/tr/td[3]/a").click()
