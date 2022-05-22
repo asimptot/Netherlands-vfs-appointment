@@ -27,6 +27,7 @@ def sendEmail():
             subject='Visa Booking',
             sender='System <system@system.com>',
             receivers=['asimzorlu@gmail.com', 'melikece.tr@gmail.com'],
+            attachments=['Capture.png']
         ))
         assert r.ok
         time.sleep(3)
@@ -111,7 +112,6 @@ def checkAvailability():
 
             elif ("Appointments are" in driver.page_source):
                 print("\nAvailable in June\n")
-                sendEmail()
                 time.sleep(5)
                 driver.find_element_by_class_name("OpenDateAllocated").click()
                 time.sleep(2)
@@ -119,7 +119,9 @@ def checkAvailability():
                 time.sleep(2)
                 driver.switch_to.alert.accept()
                 time.sleep(10)
-                driver.save_screenshot('Capture_June.png')
+                driver.save_screenshot('Capture.png')
+                time.sleep(10)
+                sendEmail()
                 time.sleep(10)
 
             else:
@@ -137,7 +139,6 @@ def checkAvailability():
 
             elif ("Appointments are" in driver.page_source):
                 print("\nAvailable in May\n")
-                sendEmail()
                 time.sleep(5)
                 driver.find_element_by_class_name("OpenDateAllocated").click()
                 time.sleep(2)
@@ -145,7 +146,9 @@ def checkAvailability():
                 time.sleep(2)
                 driver.switch_to.alert.accept()
                 time.sleep(10)
-                driver.save_screenshot('Capture_May.png')
+                driver.save_screenshot('Capture.png')
+                time.sleep(10)
+                sendEmail()
                 time.sleep(10)
 
             else:
