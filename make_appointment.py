@@ -98,10 +98,6 @@ def checkAvailability():
         time.sleep(2)
         driver.find_element_by_id("plhMain_btnSubmit").click()
 
-        while("Go to the next month" not in driver.title):
-            print(f"\nTrying Again")
-            driver.refresh()
-
         while(True):
             driver.find_element_by_xpath(
                 "//*[@id='plhMain_cldAppointment']/tbody/tr[1]/td/table/tbody/tr/td[3]/a").click()
@@ -127,6 +123,10 @@ def checkAvailability():
 
             else:
                 print("Unexpected Error")
+
+            while ("Go to the next month" not in driver.title):
+                print(f"\nTrying Again")
+                driver.refresh()
 
             driver.find_element_by_xpath(
                 "//*[@id='plhMain_cldAppointment']/tbody/tr[1]/td/table/tbody/tr/td[1]/a").click()
