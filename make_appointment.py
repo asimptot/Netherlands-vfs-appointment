@@ -105,7 +105,7 @@ def checkAvailability():
         driver.find_element_by_id("plhMain_btnSubmit").click()
         time.sleep(5)
         
-        while("Go to the next month" not in driver.page_source):
+        while("Go to the next month" not in driver.title):
             print(f"\nTrying Again")
             driver.refresh()
         
