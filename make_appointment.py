@@ -17,7 +17,6 @@ while True:
     except:
         print("\nERROR: Credentials are incorrect. Please try again...")
 
-
 def sendEmail():
     fromaddr = 'formaretro'
     password = '10061144'
