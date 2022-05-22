@@ -68,8 +68,7 @@ def checkAvailability():
         time.sleep(10)
 
         while("No date(s)" in driver.page_source):
-            print(
-                f"\nTrying Again")
+            print(f"\nTrying Again")
             driver.refresh()
 
 
@@ -105,17 +104,19 @@ def checkAvailability():
         time.sleep(2)
         driver.find_element_by_id("plhMain_btnSubmit").click()
         time.sleep(5)
+        
+        while("Go to the next month" not in driver.page_source):
+            print(f"\nTrying Again")
+            driver.refresh()
+        
         if ("Error in the application, please contact admin." in driver.page_source):
-            print(
-                f"\nReturns Error in May.")
+            print(f"\nReturns Error in May.")
             time.sleep(5)
         elif ("No date(s) available for current month." in driver.page_source):
-            print(
-                f"\nNo Appointments in May.")
+            print(f"\nNo Appointments in May.")
             time.sleep(5)
         elif ("Appointments are" in driver.page_source):
-            print(
-                "\nAvailable in May\n")
+            print("\nAvailable in May\n")
             sendEmail()
             driver.find_element_by_class_name("OpenDateAllocated").click()
             time.sleep(2)
@@ -133,14 +134,11 @@ def checkAvailability():
                 "//*[@id='plhMain_cldAppointment']/tbody/tr[1]/td/table/tbody/tr/td[3]/a").click()
             time.sleep(20)
             if ("Error in the application, please contact admin." in driver.page_source):
-                print(
-                    f"\nReturns Error in June.")
+                print(f"\nReturns Error in June.")
             elif ("No date(s) available for current month." in driver.page_source):
-                print(
-                    f"\nNo Appointments in June.")
+                print(f"\nNo Appointments in June.")
             elif ("Appointments are" in driver.page_source):
-                print(
-                    "\nUnexpected Error\n")
+                print("\nUnexpected Error\n")
                 sendEmail()
                 driver.find_element_by_class_name("OpenDateAllocated").click()
                 time.sleep(2)
@@ -156,14 +154,11 @@ def checkAvailability():
                 "//*[@id='plhMain_cldAppointment']/tbody/tr[1]/td/table/tbody/tr/td[1]/a").click()
             time.sleep(20)
             if ("Error in the application, please contact admin." in driver.page_source):
-                print(
-                    f"\nReturns Error in May.")
+                print(f"\nReturns Error in May.")
             elif ("No date(s) available for current month." in driver.page_source):
-                print(
-                    f"\nNo Appointments in May.")
+                print(f"\nNo Appointments in May.")
             elif ("Appointments are" in driver.page_source):
-                print(
-                    "\nAvailable in May\n")
+                print("\nAvailable in May\n")
                 sendEmail()
                 driver.find_element_by_class_name("OpenDateAllocated").click()
                 time.sleep(2)
