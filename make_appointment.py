@@ -17,7 +17,7 @@ while True:
     except:
         print("\nERROR: Credentials are incorrect. Please try again...")
 
-def sendEmail():
+def sendEmail_ok():
     fromaddr = 'formaretro'
     password = '10061144'
     try:
@@ -27,7 +27,25 @@ def sendEmail():
             subject='Visa Booking',
             sender='System <system@system.com>',
             receivers=['asimzorlu@gmail.com', 'melikece.tr@gmail.com'],
-            attachments=['Capture.png']
+            attachments=['booked.png']
+        ))
+        assert r.ok
+        time.sleep(3)
+
+    except:
+        print("\nLogin unsuccessful, try again.")
+
+def sendEmail_nok():
+    fromaddr = 'formaretro'
+    password = '10061144'
+    try:
+        p = postman(host='smtp.gmail.com', auth=(fromaddr, password))
+        r = p.send(email(
+            content=u'<p>Your Appointment is Ready</p>',
+            subject='Visa Booking',
+            sender='System <system@system.com>',
+            receivers=['asimzorlu@gmail.com', 'melikece.tr@gmail.com'],
+            attachments=['unexpected_error.png']
         ))
         assert r.ok
         time.sleep(3)
@@ -119,14 +137,17 @@ def checkAvailability():
                 time.sleep(2)
                 driver.switch_to.alert.accept()
                 time.sleep(10)
-                driver.save_screenshot('Capture.png')
+                driver.save_screenshot('booked.png')
                 time.sleep(10)
-                sendEmail()
+                sendEmail_ok()
                 time.sleep(10)
 
             else:
                 print("Unexpected Error")
-                driver.save_screenshot('beklenmedik_hata.png')
+                driver.save_screenshot('unexpected_error.png')
+                time.sleep(10)
+                sendEmail_nok()
+                time.sleep(10)
 
             driver.find_element_by_xpath(
                 "//*[@id='plhMain_cldAppointment']/tbody/tr[1]/td/table/tbody/tr/td[1]/a").click()
@@ -146,14 +167,17 @@ def checkAvailability():
                 time.sleep(2)
                 driver.switch_to.alert.accept()
                 time.sleep(10)
-                driver.save_screenshot('Capture.png')
+                driver.save_screenshot('booked.png')
                 time.sleep(10)
-                sendEmail()
+                sendEmail_ok()
                 time.sleep(10)
 
             else:
                 print("Unexpected Error")
-                driver.save_screenshot('beklenmedik_hata.png')
+                driver.save_screenshot('unexpected_error.png')
+                time.sleep(10)
+                sendEmail_nok()
+                time.sleep(10)
 
     finally:
         driver.quit()
