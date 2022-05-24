@@ -8,8 +8,8 @@ import warnings
 from selenium.webdriver.common.keys import Keys
 
 while True:
-    fromaddr = 'formaretro'
-    password = '10061144'
+    fromaddr = 'your gmail username'
+    password = 'your password'
     try:
         p = postman(host='smtp.gmail.com', auth=(fromaddr, password))
         print("\nLogin Successful!")
@@ -18,15 +18,15 @@ while True:
         print("\nERROR: Credentials are incorrect. Please try again...")
 
 def sendEmail_ok():
-    fromaddr = 'formaretro'
-    password = '10061144'
+    fromaddr = 'your gmail username'
+    password = 'your password'
     try:
         p = postman(host='smtp.gmail.com', auth=(fromaddr, password))
         r = p.send(email(
             content=u'<p>Your Appointment is Ready</p>',
             subject='Visa Booking',
             sender='System <system@system.com>',
-            receivers=['asimzorlu@gmail.com', 'melikece.tr@gmail.com'],
+            receivers=['receiver1@gmail.com', 'receiver2@gmail.com'],
             attachments=['booked.png']
         ))
         assert r.ok
@@ -36,15 +36,15 @@ def sendEmail_ok():
         print("\nLogin unsuccessful, try again.")
 
 def sendEmail_nok():
-    fromaddr = 'formaretro'
-    password = '10061144'
+    fromaddr = 'your gmail username'
+    password = 'your password'
     try:
         p = postman(host='smtp.gmail.com', auth=(fromaddr, password))
         r = p.send(email(
             content=u'<p>Your Appointment is Ready</p>',
             subject='Visa Booking',
             sender='System <system@system.com>',
-            receivers=['asimzorlu@gmail.com', 'melikece.tr@gmail.com'],
+            receivers=['receiver1@gmail.com', 'receiver2@gmail.com'],
             attachments=['unexpected_error.png']
         ))
         assert r.ok
@@ -89,31 +89,27 @@ def checkAvailability():
         Select(driver.find_element_by_id(
             "plhMain_repAppVisaDetails_cboTitle_0")).select_by_index(1)
         time.sleep(2)
-        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxFName").send_keys('ASIM')
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxFName").send_keys('FIRSTNAME1')
         time.sleep(2)
-        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxLName").send_keys('ZORLU')
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxLName").send_keys('SURNAME1')
         time.sleep(2)
-        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxContactNumber").send_keys('905455698593')
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxContactNumber").send_keys('PHONE NUMBER1')
         time.sleep(2)
-        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxEmailAddress").send_keys('asimzorlu@gmail.com')
-        time.sleep(2)
-
-        Select(driver.find_element_by_id(
-            "plhMain_repAppVisaDetails_cboTitle_1")).select_by_index(2)
-        time.sleep(2)
-        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl02$tbxFName").send_keys('MELIKE')
-        time.sleep(2)
-        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl02$tbxLName").send_keys('ZORLU')
-        time.sleep(2)
-        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl02$tbxContactNumber").send_keys(
-            '905558510909')
-        time.sleep(2)
-        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl02$tbxEmailAddress").send_keys(
-            'melikece.tr@gmail.com')
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl01$tbxEmailAddress").send_keys('username1@gmail.com')
         time.sleep(2)
 
-        Select(driver.find_element_by_id(
-            "plhMain_cboConfirmation")).select_by_index(1)
+        Select(driver.find_element_by_id("plhMain_repAppVisaDetails_cboTitle_1")).select_by_index(2)
+        time.sleep(2)
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl02$tbxFName").send_keys('FIRSTNAME2')
+        time.sleep(2)
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl02$tbxLName").send_keys('SURNAME2')
+        time.sleep(2)
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl02$tbxContactNumber").send_keys('PHONE NUMBER2')
+        time.sleep(2)
+        driver.find_element_by_name("ctl00$plhMain$repAppVisaDetails$ctl02$tbxEmailAddress").send_keys('username2@gmail.com')
+        time.sleep(2)
+
+        Select(driver.find_element_by_id("plhMain_cboConfirmation")).select_by_index(1)
         time.sleep(2)
         driver.find_element_by_id("plhMain_btnSubmit").click()
         time.sleep(30)
