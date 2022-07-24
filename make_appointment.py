@@ -41,7 +41,7 @@ def sendEmail_nok():
     try:
         p = postman(host='smtp.gmail.com', auth=(fromaddr, password))
         r = p.send(email(
-            content=u'<p>Your Appointment is Ready</p>',
+            content=u'<p>Error E-Mail</p>',
             subject='Visa Booking',
             sender='System <system@system.com>',
             receivers=['receiver1@gmail.com', 'receiver2@gmail.com'],
