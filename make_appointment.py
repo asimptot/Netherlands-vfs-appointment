@@ -3,7 +3,7 @@ import yagmail
 from selenium.webdriver.support.select import Select
 from init import *
 
-fromaddr = 'your gmail usernam'
+fromaddr = 'your gmail username'
 app_password = 'your gmail token' #https://towardsdatascience.com/automate-sending-emails-with-gmail-in-python-449cc0c3c317
 to = 'receiver1@gmail.com'
 
